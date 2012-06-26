@@ -16,6 +16,6 @@ exports.test = function(req, res) {
 		scripts : [
 				'//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js',
 				'/socket.io/socket.io.js',
-				'/javascripts/init.js']
+				'/javascripts/test.js']
 	})
 };

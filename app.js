@@ -1,13 +1,25 @@
 /**
  * Module dependencies.
  */
-
+// Load requires
 var express = require('express'), routes = require('./routes');
-
+var net = require('net');
 var io = require('socket.io');
 
 // Create servers
 var app = module.exports = express.createServer(), io = io.listen(app);
+
+var tcpserver = net.createServer(function(c) { //'connection' listener
+	  console.log('TCP server connected');
+	  c.on('end', function() {
+	    console.log('server disconnected');
+	  });
+	  c.write('hello\r\n');
+	  c.pipe(c);
+	});
+	tcpserver.listen(8124, function() { //'listening' listener
+	  console.log('TCP Server started on port 8124');
+	});
 
 // Configuration
 
@@ -65,7 +77,7 @@ io.sockets.on('connection', function(socket) {
 app.get('/', routes.index);
 app.get('/test', routes.test);
 
-app.listen(80, function() {
+app.listen(8080, function() {
 	console.log("Express server listening on port %d in %s mode",
 			app.address().port, app.settings.env);
 });
