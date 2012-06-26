@@ -3,6 +3,8 @@ html(lang='en')
 	head
 		title= title
 		link(rel='stylesheet', href='/stylesheets/style.css')
+		each c in css
+			link(rel='stylesheet', href=c)
 		each s in scripts
 			script(src=s)
 	body
