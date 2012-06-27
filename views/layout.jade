@@ -8,4 +8,32 @@ html(lang='en')
 		each s in scripts
 			script(src=s)
 	body
+		.container
+			ul#menu
+				li#NAVoverview
+					a(href="/") Overview
+				li#NAVtransactions
+					li 
+						a(href="/transactions/add") Add
+					li 
+						a(href="/transactions/current") Current
+					li 
+						a#today Today
+					li 
+						a#yesterday Yesterday
+				li#NAVvehicles
+					li 
+						a(href="/vehicles/one?key=1234") Vehicle 
 		div!= body
+		
+		
+		div#stickey_footer
+			ul#footer_menu
+				li
+					a(href="http://www.rp.sg") &copy; Republic Polytechnic 2012
+			ul#icons
+				li
+					img(src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif", alt="Powered by Google App Engine", align="right")
+				li
+					label#timestamp Loading
+					img#onlinestatus(style="margin-top:6px; margin-left:10px;", src="/images/offline.png", alt="offline")
