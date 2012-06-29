@@ -5,3 +5,7 @@ body {
 a {
   color: #00b7ff;
 }
+a .container {
+  width: 980px;
+  margin: 0 auto;
+}
