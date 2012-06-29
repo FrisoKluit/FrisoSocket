@@ -1,7 +1,9 @@
 var socket = io.connect();
+var map;
+var markerList = {};
 
 socket.on('connect', function() {
-	//alert("inline");
+	// alert("inline");
 	$('#onlinestatus').attr("src", "/images/online.png");
 });
 
@@ -9,25 +11,35 @@ socket.on('disconnect', function() {
 	$('#onlinestatus').attr("src", "/images/offline.png");
 });
 
-socket.on('news', function(data) {
-	console.log(data);
-//	socket.emit('my other event', {
-//		my : 'data'
-//	});
+socket.on('latlng', function(data) {
+	console.log(data.lat + ", " + data.lng + ", " + data.acc);
+	var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+	
+	if (markerList[data.id]) {
+		// move existing marker
+		markerList[data.id].setPosition(myLatlng);
+	} else {
+		// create new marker
+		var marker = new google.maps.Marker({
+			position : myLatlng,
+			map : map,
+			title : data.id
+		});
+		markerList[data.id] = marker;
+	}
 });
 
 socket.on('time', function(data) {
 	console.log(data);
 });
 
-var map;
 function initialize() {
 	var myOptions = {
-			center : new google.maps.LatLng(-34.397, 150.644),
-			mapTypeId : google.maps.MapTypeId.ROADMAP
-		};
+		center : new google.maps.LatLng(-34.397, 150.644),
+		mapTypeId : google.maps.MapTypeId.ROADMAP
+	};
 	map = new google.maps.Map(document.getElementById('main'), myOptions);
-		
+
 	var geocoder = new google.maps.Geocoder();
 	geocoder.geocode({
 		'address' : 'SG'

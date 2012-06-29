@@ -8,6 +8,7 @@ var io = require('socket.io');
 
 // Create servers
 var app = module.exports = express.createServer(), io = io.listen(app);
+var wss;
 
 net.createServer(function(socket) {
 	socket.on('connection', function() {
@@ -24,7 +25,8 @@ net.createServer(function(socket) {
 
 	socket.on('data', function(data) {
 		console.log("Data received: " + data)
-		socket.write("ack");
+		//socket.write("ack");
+		wss.emit("data", "hello");
 	});
 	socket.on('end', function() {
 		console.log("server disconnected")
@@ -59,7 +61,7 @@ app.configure('production', function() {
 
 // Sockets
 var websocketList = [];
-io.sockets.on('connection', function(websocket) {
+wss = io.sockets.on('connection', function(websocket) {
 	websocketList.push(websocket);
 	console.log(websocketList.length + " connections");
 
@@ -77,9 +79,30 @@ io.sockets.on('connection', function(websocket) {
 
 app.get('/', routes.index);
 app.get('/test', routes.test);
+app.get('/mobile/loc', function(req, res) {
+	console.log(req.param("lat", 0));
+	newloc = {}
+	newloc.lat = req.param("lat", 0);
+	newloc.lng = req.param("lng", 0);
+	newloc.acc = req.param("acc", 0);
+	
+	wss.emit("latlng", newloc)
+	res.end("OK");
+});
 console.log("starting server")
 
 app.listen(80, function() {
 	console.log("Express server listening on port %d in %s mode",
 			app.address().port, app.settings.env);
 });
+
+/* Custom web socket events
+ * latlng --> for GPS/network location updates from mobile to Web UI
+ * transaction --> new transaction info (completed, cancelled)
+ * mobile_on --> mobile phone switched on
+ * mobile_off --> mobile phone switched off
+ */
+
+
+
+*/
