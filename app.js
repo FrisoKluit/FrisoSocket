@@ -103,7 +103,7 @@ io.sockets.on('connection', function(socket) {
 app.get('/', routes.index);
 app.get('/test', routes.test);
 
-app.listen(8080, function() {
+app.listen(80, function() {
 	console.log("Express server listening on port %d in %s mode",
 			app.address().port, app.settings.env);
 });

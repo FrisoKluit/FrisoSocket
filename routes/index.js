@@ -2,16 +2,16 @@
  * GET home page.
  */
 
-exports.index = function(req, res) {
-	res.render('index', {
+exports.test = function(req, res) {
+	res.render('test', {
 		title : 'Express',
 		scripts : [],
-		css : []
+		css : ['/stylesheets/test.css', '/stylesheets/menu.css']
 	})
 };
 
-exports.test = function(req, res) {
-	res.render('test', {
+exports.index = function(req, res) {
+	res.render('index', {
 		data : 'test',
 		title : "Friso is here",
 		css : [ '/stylesheets/test.css', '/stylesheets/menu.css' ],
