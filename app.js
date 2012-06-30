@@ -27,13 +27,13 @@ net.createServer(function(socket) {
 		//console.log("Data received: " + data)
 		//socket.write("ack");
 		//wss.emit("data", "hello");
-//		jsonData = JSON.parse(data);
-//		acc = {}
-//		acc.x = jsonData.x
-//		acc.y = jsonData.y
-//		acc.z = jsonData.z
+		jsonData = JSON.parse(data.toString());
+		acc = {}
+		acc.x = jsonData.x
+		acc.y = jsonData.y
+		acc.z = jsonData.z
 		
-		wss.emit("acc", data)		
+		wss.emit("acc", acc)		
 	});
 	socket.on('end', function() {
 		console.log("server disconnected")
