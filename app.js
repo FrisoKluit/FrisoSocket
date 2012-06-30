@@ -26,7 +26,16 @@ net.createServer(function(socket) {
 	socket.on('data', function(data) {
 		console.log("Data received: " + data)
 		//socket.write("ack");
-		wss.emit("data", "hello");
+		//wss.emit("data", "hello");
+		jsonData = json.encode(data);
+		acc = {}
+		acc.x = req.param("lat", 0);
+		acc.y = req.param("lng", 0);
+		acc.z = req.param("acc", 0);
+		
+		wss.emit("latlng", acc)
+		res.end("OK");
+		
 	});
 	socket.on('end', function() {
 		console.log("server disconnected")
@@ -80,7 +89,7 @@ wss = io.sockets.on('connection', function(websocket) {
 app.get('/', routes.index);
 app.get('/test', routes.test);
 app.get('/mobile/loc', function(req, res) {
-	console.log(req.param("lat", 0));
+	//console.log(req.param("lat", 0));
 	newloc = {}
 	newloc.lat = req.param("lat", 0);
 	newloc.lng = req.param("lng", 0);
@@ -96,13 +105,9 @@ app.listen(80, function() {
 			app.address().port, app.settings.env);
 });
 
-/* Custom web socket events
- * latlng --> for GPS/network location updates from mobile to Web UI
- * transaction --> new transaction info (completed, cancelled)
- * mobile_on --> mobile phone switched on
- * mobile_off --> mobile phone switched off
- */
-
-
-
-*/
+// Custom web socket events
+// latlng --> for GPS/network location updates from mobile to Web UI
+// transaction --> new transaction info (completed, cancelled)
+// mobile_on --> mobile phone switched on
+// mobile_off --> mobile phone switched off
+//
