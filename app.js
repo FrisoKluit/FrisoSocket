@@ -27,13 +27,13 @@ net.createServer(function(socket) {
 		console.log("Data received: " + data)
 		//socket.write("ack");
 		//wss.emit("data", "hello");
-		jsonData = json.encode(data);
+		jsonData = json.parse(data);
 		acc = {}
-		acc.x = req.param("lat", 0);
-		acc.y = req.param("lng", 0);
-		acc.z = req.param("acc", 0);
+		acc.x = jsonData.param("lat", 0);
+		acc.y = jsonData.param("lng", 0);
+		acc.z = jsonData.param("acc", 0);
 		
-		wss.emit("latlng", acc)
+		wss.emit("acc", acc)
 		res.end("OK");
 		
 	});
