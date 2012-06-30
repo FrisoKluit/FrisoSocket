@@ -33,9 +33,7 @@ net.createServer(function(socket) {
 		acc.y = jsonData.y
 		acc.z = jsonData.z
 		
-		wss.emit("acc", acc)
-		res.end("OK");
-		
+		wss.emit("acc", acc)		
 	});
 	socket.on('end', function() {
 		console.log("server disconnected")
