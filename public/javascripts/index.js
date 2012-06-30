@@ -11,7 +11,7 @@ socket.on('disconnect', function() {
 	$('#onlinestatus').attr("src", "/images/offline.png");
 });
 
-socket.on('latlng', function(data) {
+socket.on('acc', function(data) {
 	console.log(data)
 	
 });
