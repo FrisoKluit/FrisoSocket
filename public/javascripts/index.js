@@ -32,7 +32,7 @@ socket
 						// move existing marker
 						markerList[js_data.plate].setPosition(myLatlng);
 						radiusList[js_data.plate].setCenter(myLatlng);
-						radiusLost[js_data.plate].setRadius(js_data.acc);
+						radiusList[js_data.plate].setRadius(js_data.acc);
 					} else {
 						
 						// create new radius
@@ -42,6 +42,8 @@ socket
 							radius: js_data.acc,
 							fillColor: "#357EC7",
 							fillOpacity: 0.2,
+							strokeOpacity: .4
+							strokeColor: "#357EC7"
 						});
 						radiusList[js_data.plate] = radius;
 						
