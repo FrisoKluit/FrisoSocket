@@ -85,7 +85,8 @@ wss = io.sockets.on('connection', function(websocket) {
 app.get('/', routes.index);
 app.get('/test', routes.test);
 app.post('/mobile/loc', function(req, res) {
-	//console.log(req.param("lat", 0));
+	console.log(req);
+	console.log(req.param("lat", 0));
 	newloc = {}
 	newloc.imei = req.param("imei", 0);
 	newloc.lat = req.param("lat", 0);
