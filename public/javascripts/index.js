@@ -18,7 +18,7 @@ socket.on('acc', function(data) {
 
 socket.on('latlng', function(data) {
 	console.log(data);
-	js_data = .parseJSON(data);
+	js_data = $.parseJSON(data);
 	console.log(data.lat + ", " + data.lng + ", " + data.acc);
 	var myLatlng = new google.maps.LatLng(data.lat, data.lng);
 	
