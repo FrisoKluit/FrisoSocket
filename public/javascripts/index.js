@@ -34,13 +34,7 @@ socket
 						radiusList[js_data.plate].setCenter(myLatlng);
 						radiusLost[js_data.plate].setRadius(js_data.acc);
 					} else {
-						var radius = new google.maps.Circle({
-							center: myLatlng,
-							map: map,
-							radius: acc,
-							fillColor: "#357EC7",
-							fillOpacity: 0.2
-						});
+						
 						// create new radius
 						var radius = new google.maps.Circle({
 							center: myLatlng,
@@ -48,7 +42,6 @@ socket
 							radius: js_data.acc,
 							fillColor: "#357EC7",
 							fillOpacity: 0.2,
-							
 						});
 						radiusList[js_data.plate] = radius;
 						
