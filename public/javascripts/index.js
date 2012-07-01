@@ -42,7 +42,7 @@ socket
 							radius: js_data.acc,
 							fillColor: "#357EC7",
 							fillOpacity: 0.2,
-							strokeOpacity: .4
+							strokeOpacity: 0.4,
 							strokeColor: "#357EC7"
 						});
 						radiusList[js_data.plate] = radius;
