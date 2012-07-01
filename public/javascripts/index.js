@@ -18,6 +18,7 @@ socket.on('acc', function(data) {
 
 socket.on('latlng', function(data) {
 	console.log(data);
+	js_data = $.parseJson(data);
 	console.log(data.lat + ", " + data.lng + ", " + data.acc);
 	var myLatlng = new google.maps.LatLng(data.lat, data.lng);
 	
@@ -48,7 +49,7 @@ function initialize() {
 
 	var geocoder = new google.maps.Geocoder();
 	geocoder.geocode({
-		'address' : 'SG'
+		'address' : 'Brielle, NL'
 	}, function(results, status) {
 		var ne = results[0].geometry.viewport.getNorthEast();
 		var sw = results[0].geometry.viewport.getSouthWest();
