@@ -1,6 +1,7 @@
 var socket = io.connect();
 var map;
 var markerList = {};
+var radiusList = {};
 
 socket.on('connect', function() {
 	// alert("inline");
@@ -30,7 +31,27 @@ socket
 					if (markerList[js_data.plate]) {
 						// move existing marker
 						markerList[js_data.plate].setPosition(myLatlng);
+						radiusList[js_data.plate].setCenter(myLatlng);
+						radiusLost[js_data.plate].setRadius(js_data.acc);
 					} else {
+						var radius = new google.maps.Circle({
+							center: myLatlng,
+							map: map,
+							radius: acc,
+							fillColor: "#357EC7",
+							fillOpacity: 0.2
+						});
+						// create new radius
+						var radius = new google.maps.Circle({
+							center: myLatlng,
+							map: map,
+							radius: acc,
+							fillColor: "#357EC7",
+							fillOpacity: 0.2,
+							
+						});
+						radiusList[js_data.plate] = radius;
+						
 						// create new marker
 						var image = new google.maps.MarkerImage(
 								'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=truck|bb|'
@@ -46,6 +67,8 @@ socket
 							icon : image
 						});
 						markerList[js_data.plate] = marker;
+						
+						
 					}
 				});
 
