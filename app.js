@@ -11,7 +11,7 @@ var app = module.exports = express.createServer(), io = io.listen(app);
 var wss;
 
 net.createServer(function(socket) {
-	socket.on('connection', function() {
+	socket.on('connect', function() {
 		console.log("Client connected")
 	});
 
