@@ -19,7 +19,7 @@ socket.on('acc', function(data) {
 socket.on('latlng', function(data) {
 	console.log(data);
 	js_data = $.parseJSON(data);
-	console.log(data.lat + ", " + data.lng + ", " + data.acc);
+	console.log(js_data.lat + ", " + js_data.lng + ", " + js_data.acc);
 	var myLatlng = new google.maps.LatLng(data.lat, data.lng);
 	
 	if (markerList[data.id]) {

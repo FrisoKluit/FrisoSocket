@@ -90,6 +90,8 @@ app.post('/mobile/loc', function(req, res) {
 	//newloc.imei = req.param("imei", 0);
 	newloc.lat = req.body.data.lat
 	newloc.lng = req.body.data.lng
+	newloc.id = 1
+	
 	//newloc.acc = req.param("acc", 0);
 	
 	wss.emit("latlng", req.body.data)
