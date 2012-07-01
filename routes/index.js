@@ -6,7 +6,8 @@ exports.test = function(req, res) {
 	res.render('test', {
 		title : 'Express',
 		scripts : [],
-		css : ['/stylesheets/test.css', '/stylesheets/menu.css', '/stylesheet/footer.css']
+		css : [ '/stylesheets/test.css', '/stylesheets/menu.css',
+				'/stylesheet/footer.css', '/stylesheet/sidebar.css' ]
 	})
 };
 
@@ -14,7 +15,8 @@ exports.index = function(req, res) {
 	res.render('index', {
 		data : 'test',
 		title : "Friso is here",
-		css : [ '/stylesheets/layout.css', '/stylesheets/menu.css' ],
+		css : [ '/stylesheets/layout.css', '/stylesheets/menu.css',
+				'/stylesheet/footer.css', '/stylesheet/sidebar.css' ],
 		scripts : [
 				'//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js',
 				'//maps.googleapis.com/maps/api/js?sensor=false',
