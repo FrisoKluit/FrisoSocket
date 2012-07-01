@@ -1,0 +1,12 @@
+#stickey_footer /* This will make your footer stay where it is */{background:none repeat scroll 0 0 #1d1d1d;border:1px solid rgba(0,0,0,0.3);bottom:0;color:#bbb;font-family:Arial,Helvetica,sans-serif;height:40px;position:fixed;text-shadow:1px 1px 1px #000;width:980px}
+z-index: 1,/* border curves */,#stickey_footer{-moz-border-radius:10px 10px 0 0;-webkit-border-radius:10px 10px 0 0;border-radius:10px 10px 0 0}
+#stickey_footer{-moz-box-shadow:0 0 11px #191919;-webkit-box-shadow:0 0 11px #191919;box-shadow:0 0 11px #191919}
+#footer_menu{margin:0;padding:0;width:auto}
+#footer_menu li{list-style:none;float:left;font-size:12px;padding:12px 14px 14px 14px;border-right:1px solid rgba(0,0,0,0.4);background:rgba(0,0,0,0.1)}
+#footer_menu .imgmenu{padding:5px 8px 3px 14px;float:left;background:url("images/home.png") 13px 5px no-repeat;width:36px;height:30px;border:none;border-right:1px solid rgba(0,0,0,0.4);cursor:pointer}
+#footer_menu .imgmenu:hover{background:url("images/home_hover.png") 13px 5px no-repeat}
+footer_menu li a{display:block;color:#ccc;text-decoration:none}
+#footer_menu li a:hover{color:#fff}
+#footer_menu li span{display:none}
+#stickey_footer #icons{float:right;width:auto;margin:5px 15px 0;padding:0;overflow:hidden}
+#stickey_footer #icons li{margin-right:12px;float:left;padding:0;list-style:none;margin-right:0;}

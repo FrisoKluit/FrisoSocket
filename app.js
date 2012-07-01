@@ -83,17 +83,14 @@ wss = io.sockets.on('connection', function(websocket) {
 
 // Routes
 
+// Web interface
 app.get('/', routes.index);
 app.get('/test', routes.test);
+app.get('/transactions', routes.transactions);
+
+// handling mobile requests
 app.post('/mobile/loc', function(req, res) {
 	console.log("Received from WSS: " + req.body.data);
-//	newloc = {}
-	//newloc.imei = req.param("imei", 0);
-//	newloc.lat = req.body.data.lat
-//	newloc.lng = req.body.data.lng
-	
-	//newloc.acc = req.param("acc", 0);
-	
 	wss.emit("latlng", req.body.data)
 	res.end("OK");
 });

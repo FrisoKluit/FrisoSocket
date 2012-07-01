@@ -9,21 +9,24 @@ html(lang='en')
 			script(src=s)
 	body
 		.container
-			ul#menu
-				li#NAVoverview
-					a(href="/") Overview
-				li#NAVtransactions
-					li 
-						a(href="/transactions/add") Add
-					li 
-						a(href="/transactions/current") Current
-					li 
-						a#today Today
-					li 
-						a#yesterday Yesterday
-				li#NAVvehicles
-					li 
-						a(href="/vehicles/one?key=1234") Vehicle 
+			div
+				ul#menu
+					li#NAVoverview
+						a(href="/") Overview
+					li#NAVtransactions
+						ul
+							li 
+								a(href="/transactions/add") Add
+							li 
+								a(href="/transactions/current") Current
+							li 
+								a#today Today
+							li 
+								a#yesterday Yesterday
+					li#NAVvehicles
+						ul
+							li 
+								a(href="/vehicles/one?key=1234") Vehicle 
 		div!= body
 		
 		

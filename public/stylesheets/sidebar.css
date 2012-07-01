@@ -1,0 +1,9 @@
+table#VerColMenu{border:1px solid #000;width:100%;cursor:default}
+table#VerColMenu th{border-bottom:1px solid #000;border-top:1px solid #000;background:#c3d9ff;padding:5px}
+table#VerColMenu td{padding:2px}
+table#VerColMenu th,td{cursor:pointer}
+table#VerColMenu > tbody > tr > td:last-child{text-align:right}
+table.oneVehicle{border:1px solid #000;width:100%}
+table.oneVehicle th{border-bottom:1px solid #000;border-top:1px solid #000;background:#c3d9ff;padding:10px}
+table.oneVehicle td{padding:2px}
+table.oneVehicle th,td{cursor:default}
