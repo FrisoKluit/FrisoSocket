@@ -13,28 +13,41 @@ socket.on('disconnect', function() {
 
 socket.on('acc', function(data) {
 	console.log(data)
-	
+
 });
 
-socket.on('latlng', function(data) {
-	console.log(data);
-	js_data = $.parseJSON(data);
-	console.log(js_data.lat + ", " + js_data.lng + ", " + js_data.acc);
-	var myLatlng = new google.maps.LatLng(js_data.lat, js_data.lng);
-	
-	if (markerList[js_data.id]) {
-		// move existing marker
-		markerList[js_data.id].setPosition(myLatlng);
-	} else {
-		// create new marker
-		var marker = new google.maps.Marker({
-			position : myLatlng,
-			map : map,
-			title : js_data.id
-		});
-		markerList[js_data.id] = marker;
-	}
-});
+socket
+		.on(
+				'latlng',
+				function(data) {
+					console.log(data);
+					js_data = $.parseJSON(data);
+					console.log(js_data.lat + ", " + js_data.lng + ", "
+							+ js_data.acc);
+					var myLatlng = new google.maps.LatLng(js_data.lat,
+							js_data.lng);
+
+					if (markerList[js_data.plate]) {
+						// move existing marker
+						markerList[js_data.plate].setPosition(myLatlng);
+					} else {
+						// create new marker
+						var image = new google.maps.MarkerImage(
+								'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=truck|bb|'
+										+ js_data.plate + '|FFFFFF|00FF00',
+								new google.maps.Size(180, 42),
+								new google.maps.Point(0, 0),
+								new google.maps.Point(0, 42));
+
+						var marker = new google.maps.Marker({
+							position : myLatlng,
+							map : map,
+							title : js_data.plate,
+							icon : image
+						});
+						markerList[js_data.plate] = marker;
+					}
+				});
 
 socket.on('time', function(data) {
 	console.log(data);
