@@ -29,9 +29,7 @@ net.createServer(function(socket) {
 		//wss.emit("data", "hello");
 		jsonData = JSON.parse(data.toString());
 		acc = {}
-		acc.x = jsonData.x
-		acc.y = jsonData.y
-		acc.z = jsonData.z
+		acc.ts = jsonData.ts
 		
 		wss.emit("acc", acc)		
 	});
