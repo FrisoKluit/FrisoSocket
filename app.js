@@ -87,7 +87,7 @@ app.get('/test', routes.test);
 app.post('/mobile/loc', function(req, res) {
 	//console.log(req.param("lat", 0));
 	newloc = {}
-	newlic.imei = req.param("imei", 0);
+	newloc.imei = req.param("imei", 0);
 	newloc.lat = req.param("lat", 0);
 	newloc.lng = req.param("lng", 0);
 	newloc.acc = req.param("acc", 0);
