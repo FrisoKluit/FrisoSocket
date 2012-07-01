@@ -20,19 +20,19 @@ socket.on('latlng', function(data) {
 	console.log(data);
 	js_data = $.parseJSON(data);
 	console.log(js_data.lat + ", " + js_data.lng + ", " + js_data.acc);
-	var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+	var myLatlng = new google.maps.LatLng(js_data.lat, js_data.lng);
 	
-	if (markerList[data.id]) {
+	if (markerList[js_data.id]) {
 		// move existing marker
-		markerList[data.id].setPosition(myLatlng);
+		markerList[js_data.id].setPosition(myLatlng);
 	} else {
 		// create new marker
 		var marker = new google.maps.Marker({
 			position : myLatlng,
 			map : map,
-			title : data.id
+			title : js_data.id
 		});
-		markerList[data.id] = marker;
+		markerList[js_data.id] = marker;
 	}
 });
 
@@ -49,7 +49,7 @@ function initialize() {
 
 	var geocoder = new google.maps.Geocoder();
 	geocoder.geocode({
-		'address' : 'Brielle, NL'
+		'address' : 'Singapore'
 	}, function(results, status) {
 		var ne = results[0].geometry.viewport.getNorthEast();
 		var sw = results[0].geometry.viewport.getSouthWest();
