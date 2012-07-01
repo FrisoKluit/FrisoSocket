@@ -45,7 +45,7 @@ socket
 						var radius = new google.maps.Circle({
 							center: myLatlng,
 							map: map,
-							radius: acc,
+							radius: js_data.acc,
 							fillColor: "#357EC7",
 							fillOpacity: 0.2,
 							
