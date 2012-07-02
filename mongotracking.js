@@ -14,7 +14,7 @@ TrackingProvider = function(host, port) {
 	});
 };
 
-TrackingProvider.getCollection = function(callback) {
+TrackingProvider.prototype.getCollection = function(callback) {
 	console.log("Mongo: in getCollection");
 	this.db.collection('tracks', function(error, article_collection) {
 		if (error)
@@ -24,7 +24,7 @@ TrackingProvider.getCollection = function(callback) {
 	});
 };
 
-TrackingProvider.save = function(tracks, callback) {
+TrackingProvider.prototype.save = function(tracks, callback) {
 	console.log("Mongo: in save");
 	this.getCollection(function(error, track_collection) {
 		if (error)
