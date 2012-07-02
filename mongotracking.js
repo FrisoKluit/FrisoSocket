@@ -6,7 +6,7 @@ var ObjectID = require('mongodb').ObjectID;
 console.log("Setting up DB");
 
 TrackingProvider = function(host, port) {
-	console.log("Setting up DB");
+	console.log("Mongo: Setting up DB");
 	this.db = new Db('logistics-tracking', new Server(host, port, {
 		auto_reconnect : true
 	}, {}));
@@ -15,6 +15,7 @@ TrackingProvider = function(host, port) {
 };
 
 TrackingProvider.getCollection = function(callback) {
+	console.log("Mongo: in getCollection");
 	this.db.collection('tracks', function(error, article_collection) {
 		if (error)
 			callback(error);
@@ -24,6 +25,7 @@ TrackingProvider.getCollection = function(callback) {
 };
 
 TrackingProvider.save = function(tracks, callback) {
+	console.log("Mongo: in save");
 	this.getCollection(function(error, track_collection) {
 		if (error)
 			callback(error)
