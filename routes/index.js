@@ -26,8 +26,7 @@ exports.index = function(req, res) {
 
 exports.transactions = function(req, res) {
 	res.render('transactions', {
-		title : 
-			Friso is here",
+		title : 'Friso is here',
 		css : [ '/stylesheets/layout.css', '/stylesheets/menu.css',
 				'/stylesheets/footer.css', '/stylesheets/sidebar.css' ],
 		scripts : [

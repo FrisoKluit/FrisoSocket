@@ -5,6 +5,7 @@
 var express = require('express'), routes = require('./routes');
 var net = require('net');
 var io = require('socket.io');
+var TrackingProvider = require('./mongotracking.js').TrackingProvider;
 
 // Create servers
 var app = module.exports = express.createServer(), io = io.listen(app);
