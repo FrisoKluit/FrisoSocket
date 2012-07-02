@@ -6,6 +6,7 @@ var express = require('express'), routes = require('./routes');
 var net = require('net');
 var io = require('socket.io');
 var TrackingProvider = require('./mongotracking.js').TrackingProvider;
+console.log(TrackingProvider);
 
 // Create servers
 var app = module.exports = express.createServer(), io = io.listen(app);
@@ -66,6 +67,8 @@ app.configure('production', function() {
 	app.use(express.errorHandler());
 });
 
+var trackingProvider = new TrackingProvider('localhost', 27017);
+
 // Sockets
 var websocketList = [];
 wss = io.sockets.on('connection', function(websocket) {
@@ -93,6 +96,14 @@ app.get('/transactions', routes.transactions);
 app.post('/mobile/loc', function(req, res) {
 	console.log("Received from WSS: " + req.body.data);
 	wss.emit("latlng", req.body.data)
+	
+	trackingProvider.save(
+			req.body.data
+			, function( error, docs) {
+        //res.redirect('/')
+				console.log("???")
+    });
+	
 	res.end("OK");
 });
 console.log("starting server")
