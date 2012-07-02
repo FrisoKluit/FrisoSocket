@@ -30,7 +30,7 @@ TrackingProvider.prototype.save = function(tracks, callback) {
 		if (error)
 			callback(error)
 		else {
-			if (typeof (articles.length) == "undefined")
+			if (typeof (tracks.length) == "undefined")
 				tracks = [ tracks ];
 
 			for ( var i = 0; i < tracks.length; i++) {
