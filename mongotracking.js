@@ -41,8 +41,9 @@ TrackingProvider.prototype.save = function(tracks, callback) {
 				// article.comments[j].created_at = new Date();
 				// }
 			}
-
+			console.log("Going to insert");
 			track_collection.insert(tracks, function() {
+				console.log("inserted")
 				callback(null, tracks);
 			});
 		}

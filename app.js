@@ -8,6 +8,23 @@ var io = require('socket.io');
 var TrackingProvider = require('./mongotracking.js').TrackingProvider;
 console.log(TrackingProvider);
 
+// MySQL
+var MySQLClient = require('mysql').Client, mySQLclient = new MySQLClient();
+mySQLclient.user = 'root';
+mySQLclient.password = 'jaap83';
+// client.host='mysqlserver.com'; //only needed if your mysql server isn't on
+// your localhost
+// client.port='5673'; //only needed if your mysql port isn't 3306
+// mySQLclient.connect();
+
+// test
+// var query = mySQLclient.query(
+// 'INSERT INTO table '+
+// 'SET title = ?, text = ?, created = ?',
+// ['another entry', 'because 2 entries make a better test', '2010-08-16
+// 12:42:15']
+// );
+
 // Create servers
 var app = module.exports = express.createServer(), io = io.listen(app);
 var wss;
@@ -26,14 +43,14 @@ net.createServer(function(socket) {
 	});
 
 	socket.on('data', function(data) {
-		//console.log("Data received: " + data)
-		//socket.write("ack");
-		//wss.emit("data", "hello");
+		// console.log("Data received: " + data)
+		// socket.write("ack");
+		// wss.emit("data", "hello");
 		jsonData = JSON.parse(data.toString());
 		acc = {}
 		acc.ts = jsonData.ts
-		
-		wss.emit("acc", acc)		
+
+		wss.emit("acc", acc)
 	});
 	socket.on('end', function() {
 		console.log("server disconnected")
@@ -50,7 +67,7 @@ app.configure(function() {
 	app.use(express.methodOverride());
 	app.use(require('stylus').middleware({
 		src : __dirname + '/public',
-		compress: true		
+		compress : true
 	}));
 	app.use(app.router);
 	app.use(express.static(__dirname + '/public'));
@@ -96,15 +113,13 @@ app.get('/transactions', routes.transactions);
 app.post('/mobile/loc', function(req, res) {
 	console.log("Received from WSS: " + req.body.data);
 	wss.emit("latlng", req.body.data)
-	
-	console.log("Tracking provider: " + TrackingProvider)
-	trackingProvider.save(
-			req.body.data
-			, function( error, docs) {
-        //res.redirect('/')
-				console.log("???")
-    });
-	
+
+	// console.log("Tracking provider: " + TrackingProvider)
+	trackingProvider.save(req.body.data, function(error, docs) {
+		// res.redirect('/')
+		console.log("???" + error)
+	});
+
 	res.end("OK");
 });
 console.log("starting server")
