@@ -112,12 +112,18 @@ app.get('/transactions', routes.transactions);
 // handling mobile requests
 app.post('/mobile/loc', function(req, res) {
 	console.log("Received from WSS: " + req.body.data);
-	wss.emit("latlng", req.body.data)
+	
+	newData = {}
+	newData['lat'] = req.body.data.lat
+	newData['lng'] = req.body.data.lng
+	newData['acc'] = req.body.data.acc
+	
+	wss.emit("latlng", newData)
 
 	// console.log("Tracking provider: " + TrackingProvider)
-	trackingProvider.save(req.body.data, function(error, docs) {
+	trackingProvider.save(newData, function(error, docs) {
 		// res.redirect('/')
-		console.log("???" + error)
+		console.log("???" + newData)
 	});
 
 	res.end("OK");
