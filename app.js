@@ -111,12 +111,13 @@ app.get('/transactions', routes.transactions);
 
 // handling mobile requests
 app.post('/mobile/loc', function(req, res) {
-	console.log("Received from WSS: " + req.body.data);
+	console.log("Received from HTTP POST: " + req.body.data);
+	my_obj = JSON.parse(req.body.data)
 	
 	newData = {}
-	newData['lat'] = req.body.data.lat
-	newData['lng'] = req.body.data.lng
-	newData['acc'] = req.body.data.acc
+	newData['lat'] = my_obj.lat
+	newData['lng'] = my_obj.lng
+	newData['acc'] = my_obj.acc
 	
 	wss.emit("latlng", newData)
 
