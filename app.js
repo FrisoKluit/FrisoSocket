@@ -123,6 +123,11 @@ app.post('/mobile/loc', function(req, res) {
 app.post('/mobile/battery', function(req, res) {
 console.log("Received Battery: " + req.body.data);
 });
+
+app.post('/mobile/ssid', function(req, res) {
+console.log("Received SSID: " + req.body.data);
+});
+
 console.log("starting server")
 
 app.listen(80, function() {
