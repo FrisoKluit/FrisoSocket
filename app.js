@@ -6,7 +6,7 @@ var express = require('express'), routes = require('./routes');
 var net = require('net');
 var io = require('socket.io');
 var TrackingProvider = require('./mongotracking.js').TrackingProvider;
-console.log(TrackingProvider);
+var SSIDProvider = require('./mongossid.js').SSIDProvider;
 
 // MySQL
 var MySQLClient = require('mysql').Client, mySQLclient = new MySQLClient();
@@ -125,7 +125,11 @@ console.log("Received Battery: " + req.body.data);
 });
 
 app.post('/mobile/ssid', function(req, res) {
+my_obj = JSON.parse(req.body.data)
 console.log("Received SSID: " + req.body.data);
+ssidProvider.save(my_obj, function(error, docs) {
+		console.log("SSID inserted")
+	});
 });
 
 console.log("starting server")
