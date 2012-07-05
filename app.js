@@ -82,6 +82,7 @@ app.configure('production', function() {
 });
 
 var trackingProvider = new TrackingProvider('localhost', 27017);
+var ssidProvider = new SSIDProvider('localhost', 27017);
 
 // Sockets
 var websocketList = [];
