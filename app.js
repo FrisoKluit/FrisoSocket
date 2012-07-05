@@ -6,7 +6,7 @@ var express = require('express'), routes = require('./routes');
 var net = require('net');
 var io = require('socket.io');
 var TrackingProvider = require('./mongotracking.js').TrackingProvider;
-var SSIDProvider = require('./mongossid.js').SSIDProvider;
+var SSIDProvider = require('./ssidtracking.js').SSIDProvider;
 
 // MySQL
 var MySQLClient = require('mysql').Client, mySQLclient = new MySQLClient();
