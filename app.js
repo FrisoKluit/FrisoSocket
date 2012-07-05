@@ -119,6 +119,10 @@ app.post('/mobile/loc', function(req, res) {
 
 	res.end("OK");
 });
+
+app.post('/mobile/battery', function(req, res) {
+console.log("Received Battery: " + req.body.data);
+});
 console.log("starting server")
 
 app.listen(80, function() {
