@@ -131,6 +131,7 @@ console.log("Received SSID: " + req.body.data);
 ssidProvider.save(my_obj, function(error, docs) {
 		console.log("SSID inserted")
 	});
+res.end("OK");
 });
 
 console.log("starting server")
