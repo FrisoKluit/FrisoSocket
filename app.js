@@ -132,9 +132,11 @@ ssidProvider.save(my_obj, function(error, docs) {
 		console.log("SSID inserted")
 	});
 ssidProvider.count(function(error, count) {
-	console.log("count: " + count);
-	res.write("Count:");
-	res.write(count);	
+	var reply = {};
+	reply['count'] = count;
+	jsonReply = JSON.stringify(reply);
+	console.log(jsonReply);
+	res.write(jsonReply);	
 	res.end("");
 });
 
