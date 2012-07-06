@@ -24,6 +24,21 @@ SSIDProvider.prototype.getCollection = function(callback) {
 	});
 };
 
+SSIDProvider.prototype.count = function(callback) {
+	console.log("getting count");
+	this.getCollection(function(error, track_collection) {
+		if (error) {
+			callback(error, 0)
+		} else {
+			track_collection.count(function(e, count) {
+				return callback(e, count)
+			});
+		}
+	});
+	
+};
+
+
 SSIDProvider.prototype.save = function(tracks, callback) {
 	console.log("Mongo: in save");
 	this.getCollection(function(error, track_collection) {
