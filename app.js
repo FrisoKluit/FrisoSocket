@@ -106,12 +106,13 @@ wss = io.sockets.on('connection', function(websocket) {
 app.get('/', routes.index);
 app.get('/test', routes.test);
 app.get('/transactions', routes.transactions);
+app.get('/ssid', routes.ssid);
 
 // handling mobile requests
 app.post('/mobile/loc', function(req, res) {
 	console.log("Received from HTTP POST: " + req.body.data);
 	my_obj = JSON.parse(req.body.data)
-	
+
 	wss.emit("latlng", my_obj)
 
 	trackingProvider.save(my_obj, function(error, docs) {
@@ -122,31 +123,29 @@ app.post('/mobile/loc', function(req, res) {
 });
 
 app.post('/mobile/battery', function(req, res) {
-console.log("Received Battery: " + req.body.data);
+	console.log("Received Battery: " + req.body.data);
 });
 
 app.post('/mobile/ssid', function(req, res) {
-my_obj = JSON.parse(req.body.data)
-console.log("Received SSID: " + req.body.data);
-ssidProvider.save(my_obj, function(error, docs) {
+	my_obj = JSON.parse(req.body.data)
+	console.log("Received SSID: " + req.body.data);
+	ssidProvider.save(my_obj, function(error, docs) {
 		console.log("SSID inserted")
 	});
-ssidProvider.count(function(error, count) {
-	var reply = {};
-	reply['count'] = count;
-	jsonReply = JSON.stringify(reply);
-	console.log(jsonReply);
-	res.write(jsonReply);	
-	res.end("");
-});
-
+	ssidProvider.count(function(error, count) {
+		var reply = {};
+		reply['count'] = count;
+		jsonReply = JSON.stringify(reply);
+		console.log(jsonReply);
+		res.write(jsonReply);
+		res.end("");
+	});
 });
 
 console.log("starting server")
 
 app.listen(80, function() {
-	console.log("Express server listening on port %d in %s mode",
-			app.address().port, app.settings.env);
+	console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });
 
 // Custom web socket events
