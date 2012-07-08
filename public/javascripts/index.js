@@ -17,55 +17,44 @@ socket.on('acc', function(data) {
 
 });
 
-socket
-		.on(
-				'latlng',
-				function(data) {
-					console.log(data);
-					js_data = $.parseJSON(data);
-					console.log(js_data.lat + ", " + js_data.lng + ", "
-							+ js_data.acc);
-					var myLatlng = new google.maps.LatLng(js_data.lat,
-							js_data.lng);
+socket.on('latlng', function(data) {
+	console.log(data);
+	js_data = $.parseJSON(data);
+	console.log(js_data.lat + ", " + js_data.lng + ", " + js_data.acc);
+	var myLatlng = new google.maps.LatLng(js_data.lat, js_data.lng);
 
-					if (markerList[js_data.plate]) {
-						// move existing marker
-						markerList[js_data.plate].setPosition(myLatlng);
-						radiusList[js_data.plate].setCenter(myLatlng);
-						radiusList[js_data.plate].setRadius(js_data.acc);
-					} else {
-						
-						// create new radius
-						var radius = new google.maps.Circle({
-							center: myLatlng,
-							map: map,
-							radius: js_data.acc,
-							fillColor: "#357EC7",
-							fillOpacity: 0.2,
-							strokeOpacity: 0.4,
-							strokeColor: "#357EC7"
-						});
-						radiusList[js_data.plate] = radius;
-						
-						// create new marker
-						var image = new google.maps.MarkerImage(
-								'https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=truck|bb|'
-										+ js_data.plate + '|FFFFFF|00FF00',
-								new google.maps.Size(180, 42),
-								new google.maps.Point(0, 0),
-								new google.maps.Point(0, 42));
+	if (markerList[js_data.plate]) {
+		// move existing marker
+		markerList[js_data.plate].setPosition(myLatlng);
+		radiusList[js_data.plate].setCenter(myLatlng);
+		radiusList[js_data.plate].setRadius(js_data.acc);
+	} else {
 
-						var marker = new google.maps.Marker({
-							position : myLatlng,
-							map : map,
-							title : js_data.plate,
-							icon : image
-						});
-						markerList[js_data.plate] = marker;
-						
-						
-					}
-				});
+		// create new radius
+		var radius = new google.maps.Circle({
+			center : myLatlng,
+			map : map,
+			radius : js_data.acc,
+			fillColor : "#357EC7",
+			fillOpacity : 0.2,
+			strokeOpacity : 0.4,
+			strokeColor : "#357EC7"
+		});
+		radiusList[js_data.plate] = radius;
+
+		// create new marker
+		var image = new google.maps.MarkerImage('https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=truck|bb|' + js_data.plate + '|FFFFFF|00FF00', new google.maps.Size(180, 42), new google.maps.Point(0, 0), new google.maps.Point(0, 42));
+
+		var marker = new google.maps.Marker({
+			position : myLatlng,
+			map : map,
+			title : js_data.plate,
+			icon : image
+		});
+		markerList[js_data.plate] = marker;
+
+	}
+});
 
 socket.on('time', function(data) {
 	console.log(data);
@@ -90,6 +79,7 @@ function initialize() {
 		map.setZoom(newZoom);
 	});
 }
+
 
 $(document).ready(function() {
 	initialize();
