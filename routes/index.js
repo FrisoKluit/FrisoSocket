@@ -26,11 +26,3 @@ exports.transactions = function(req, res) {
 		scripts : ['//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js', '//maps.googleapis.com/maps/api/js?sensor=false', '/socket.io/socket.io.js', '/javascripts/transactions.js']
 	});
 }
-
-exports.ssid = function(req, res) {
-	res.render('ssid', {
-		title : 'SSID Tracking',
-		css : ['/stylesheets/layout.css', '/stylesheets/menu.css', '/stylesheets/footer.css'],
-		scripts : ['//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js', '//maps.googleapis.com/maps/api/js?sensor=false', '/socket.io/socket.io.js', '/javascripts/transactions.js']
-	});
-}
