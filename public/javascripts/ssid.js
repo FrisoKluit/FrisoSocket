@@ -1,4 +1,6 @@
 function initialize() {
+	alert (!{JSON.stringify(data)});
+	
 	var myOptions = {
 		center : new google.maps.LatLng(-34.397, 150.644),
 		mapTypeId : google.maps.MapTypeId.ROADMAP
@@ -17,3 +19,7 @@ function initialize() {
 		map.setZoom(newZoom);
 	});
 }
+
+$(document).ready(function() {
+	initialize();
+});

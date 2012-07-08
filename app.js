@@ -106,7 +106,19 @@ wss = io.sockets.on('connection', function(websocket) {
 app.get('/', routes.index);
 app.get('/test', routes.test);
 app.get('/transactions', routes.transactions);
-app.get('/ssid', routes.ssid);
+
+app.get('/ssid', function(req, res) {
+	// do expensive call
+	var data = {'abc': 12};
+	res.render('ssid.jade', {
+		locals : {
+			title : 'SSID Tracking',
+			css : ['/stylesheets/layout.css', '/stylesheets/menu.css', '/stylesheets/footer.css'],
+			scripts : ['//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js', '//maps.googleapis.com/maps/api/js?sensor=false', '/socket.io/socket.io.js', '/javascripts/transactions.js'],
+			data : data,
+		}
+	});
+});
 
 // handling mobile requests
 app.post('/mobile/loc', function(req, res) {
